@@ -15,9 +15,10 @@ app.get('/', (req,res)=> {
 })
 
 
-app.post('/add_post', async(req,res) => {
+app.post('/addpost', async(req,res) => {
     const now = new Date()
     const post = req.body
+    
     console.log(post)
     const newPost = new PostModel({
         text: body.text,
@@ -34,12 +35,12 @@ app.post('/register', async(req, res)=> {
     const user = req.body;
     const isUser = await UserModel.find({username: user.username})
     if(isUser.length === 0){
-        const user = new UserModel({
+        const newUser = new UserModel({
             ...user
         })
         await newUser.generateAuthTokens();
         await newUser.save()
-        res.send(201).send({msg: "User Created"})
+        res.status(201).send({msg: "User Created"})
             }
     else{
         res.status(400).send({error: "Something Went WRONG"})
@@ -47,13 +48,13 @@ app.post('/register', async(req, res)=> {
 })
 
 
-app.post('/user/1234/login', async(req,res) => {
+app.post('/login', async(req,res) => {
     console.log('login')
     try{
-        console.log(req.body.mail)
+        console.log(req.body.username)
         const user = await UserModel.loginUser(req.body.username, req.body.password)
         await user.generateAuthTokens()
-        res.status(200).send({msg: "Created user"})
+        res.status(200).send({msg: "Logged In"})
 
     }
     catch(error){

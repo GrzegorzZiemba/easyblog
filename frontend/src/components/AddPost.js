@@ -33,7 +33,7 @@ const AddPost = () => {
             <Field
             style={{ size: "200px", width: "100%" }}
             name="description"
-            type="password"
+            type="textarea"
             />
             <ErrorMessage
             name="description"

@@ -2,12 +2,12 @@ import axios from "axios";
 
 const url = "http://localhost:5005";
 
-export const loginAccount = (title, description) => {
+export const loginAccount = async (title, description) => {
   console.log("Creating Post");
   console.log(title, description);
-  return axios({
+  await axios({
     method: "post",
-    data: title, description,
+    data: {title, description},
     url: `${url}/addpost`,
   });
 };

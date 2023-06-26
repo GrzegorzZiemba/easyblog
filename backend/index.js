@@ -18,18 +18,28 @@ app.get('/', (req,res)=> {
 app.post('/addpost', async(req,res) => {
     const now = new Date()
     const post = req.body
-    
-    console.log(post)
+ 
     const newPost = new PostModel({
-        text: body.text,
+        title: post.title,
         date: now,
         image: "https://images-platform.99static.com//iZpcs65tZC6-Ecy_cjHxE69wmMc=/0x0:1920x1920/fit-in/590x590/99designs-contests-attachments/61/61964/attachment_61964231",
-        description: body.description,
-        keywords: body.keywords
+        description: post.description,
+        keywords: ['Keyword']
         
 
     })
+
+    await newPost.save()
 })
+
+
+app.get('/posts', async(req,res)=> {
+    const posts = await PostModel.find()
+    console.log(posts)
+    console.log("POSTS")
+    res.json({posts:posts})
+})
+
 
 app.post('/register', async(req, res)=> {
     const user = req.body;

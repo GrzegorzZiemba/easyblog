@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
     ]
   });
   
-  const PostModel = mongoose.model('User', postSchema);
+  const PostModel = mongoose.model('post', postSchema);
   
 
 module.exports = PostModel

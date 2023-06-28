@@ -1,16 +1,12 @@
 import React from 'react';
-import CodeBlock from './CodeBlock';
-import LoginForm from './LoginForm';
-import SignInForm from './SignInForm';
+import LoginPage from '../pages/LoginPage';
+
 function MainZone() {
 
 
   return (
     <div className="main">
-        LOGUJ SI
-     <LoginForm />
-        Signuj Si
-     <SignInForm /> 
+     <LoginPage />
   
   </div>
   );

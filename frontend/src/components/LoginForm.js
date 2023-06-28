@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
 import { loginAccount } from '../api';
 
 const LoginForm = () => {
+    const [jsonData, setJsonData] = useState('')
   return (
     <Formik
     initialValues={{
@@ -19,11 +20,20 @@ const LoginForm = () => {
         {
             setSubmitting(false);
             loginAccount(values.username, values.password)
-            console.log(            loginAccount(values.username, values.password)
-            )
+            const data = loginAccount(values.username, values.password)
+            data.then(res => setJsonData(res?.data))
+            console.log(jsonData)
+            if(jsonData){
+                localStorage.setItem("token", jsonData.json);
+
+            }
+            else{
+                localStorage.setItem("token", "");
+
+            }
         }}
     >
-        <Form>s
+        <Form>
             <label htmlFor="username">username</label>
             <Field
             style={{ size: "200px", width: "100%" }}

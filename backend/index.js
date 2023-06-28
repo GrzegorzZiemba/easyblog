@@ -64,8 +64,8 @@ app.post('/login', async(req,res) => {
     try{
         console.log(req.body.username)
         const user = await UserModel.loginUser(req.body.username, req.body.password)
-        await user.generateAuthTokens()
-        res.status(200).send({msg: "Logged In"})
+        const token = await user.generateAuthTokens()
+        res.status(200).send({json: token})
 
     }
     catch(error){

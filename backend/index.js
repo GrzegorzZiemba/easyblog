@@ -24,7 +24,8 @@ app.post('/addpost', async(req,res) => {
         date: now,
         image: "https://images-platform.99static.com//iZpcs65tZC6-Ecy_cjHxE69wmMc=/0x0:1920x1920/fit-in/590x590/99designs-contests-attachments/61/61964/attachment_61964231",
         description: post.description,
-        keywords: ['Keyword']
+        keywords: ['Keyword'],
+        code: post.code,
         
 
     })

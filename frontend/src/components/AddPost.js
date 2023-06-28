@@ -1,14 +1,15 @@
 import React from 'react'
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
-import { loginAccount } from '../api';
+import { createPost } from '../api';
 
 const AddPost = () => {
   return (
     <Formik
     initialValues={{
         title:"", 
-        description:""
+        description:"",
+        code: ""
     }}
     validationSchema={Yup.object({
         title: Yup.string(),
@@ -17,7 +18,7 @@ const AddPost = () => {
     onSubmit={(values, { setSubmitting }) =>
         {
             setSubmitting(false);
-            loginAccount(values.title, values.description)
+            createPost(values.title, values.description, values.code)
         }}
     >
         <Form>s
@@ -37,6 +38,18 @@ const AddPost = () => {
             />
             <ErrorMessage
             name="description"
+            component="div"
+            style={{ color: "red" }}
+            />
+
+            <label htmlFor="code">code</label>
+            <Field
+            style={{ size: "200px", width: "100%" }}
+            name="code"
+            type="textarea"
+            />
+            <ErrorMessage
+            name="code"
             component="div"
             style={{ color: "red" }}
             />

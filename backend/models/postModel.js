@@ -7,6 +7,7 @@ const postSchema = new mongoose.Schema({
     date: Date,
     image: String,
     description: String,
+    code: String,
     keywords: [
         {type: String}
     ]

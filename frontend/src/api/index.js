@@ -43,3 +43,18 @@ export const loginAccount = async (username, password) => {
     console.log("Error")
   }
 };
+
+export const deleteUser = (token) => {
+  try{
+    return axios({
+      method: "delete",
+      headers: {
+        Authorization: `${token}`,
+      },
+      url: `${url}/deleteuser`,
+    });
+  }
+  catch(e){
+    console.log('Error')
+  }
+};

@@ -3,7 +3,7 @@ const cors = require('cors')
 const db = require('./db')
 const PostModel = require('./models/postModel')
 const UserModel = require('./models/userModel')
-
+const auth = require('./middleware/auth')
 const app = express()
 
 app.use(cors())
@@ -39,7 +39,7 @@ app.get('/posts', async(req,res)=> {
     console.log(posts)
     console.log("POSTS")
     res.json({posts:posts})
-    
+
 })
 
 
@@ -74,9 +74,15 @@ app.post('/login', async(req,res) => {
     }
 })
 
-app.delete('/delete-user/', async(req,res) => {
+app.delete('/deleteuser',auth,  async(req,res) => {
+    console.log(req.user)
     try{
-        const userId = req.body._id
+        const userId = req.user[0]._id
+        console.log(userId)
+        console.log("DELETING")
+        await UserModel.delete({id: userId})
+    }
+    catch(e){
 
     }
 })

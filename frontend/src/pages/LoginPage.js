@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { deleteUser } from '../api'
 import LoginForm from '../components/LoginForm'
 import SignInForm from '../components/SignInForm'
 const LoginPage = () => {
@@ -15,7 +16,13 @@ const LoginPage = () => {
        Signuj Si
     <SignInForm />  
     </>) : (
-    <button onClick={()=>localStorage.removeItem('token')}>wyloguj</button>)
+      <>
+    <button onClick={()=>localStorage.removeItem('token')}>wyloguj</button>
+    <button onClick={()=>{
+      deleteUser(localStorage.getItem('token'))
+      localStorage.removeItem('token')
+    }}>Deletuj</button>
+    </>)
     }
     </>
   )

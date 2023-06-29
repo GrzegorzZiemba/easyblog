@@ -39,6 +39,7 @@ app.get('/posts', async(req,res)=> {
     console.log(posts)
     console.log("POSTS")
     res.json({posts:posts})
+    
 })
 
 
@@ -70,6 +71,13 @@ app.post('/login', async(req,res) => {
     }
     catch(error){
         res.status(400).send({error: "Cannot Login"})
+    }
+})
+
+app.delete('/delete-user/', async(req,res) => {
+    try{
+        const userId = req.body._id
+
     }
 })
 
